@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пожабимся?)</title>
+    <script src="https://use.fontawesome.com/1aed5f4ba5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<style>
+*{margin: 0; padding: 0; box-sizing: border-box;}
+html, body {
+    font-family: 'Press Start 2P';
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    }
+body {overflow: hidden;}
+#left {
+    background: linear-gradient(-45deg, #4db8ff 50%, #4d71ef);
+    width: 100%;
+    }
+#right {
+    background: #EAD590;
+    border-left: 3px solid black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#container1 {
+    width: 90%;
+    height: 95%;
+    position: relative;
+    z-index: 5;
+}
+#question {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    width: 90%;
+    height: 50%;
+    border: 3px solid #020122;
+    border-radius: 10%;
+    position: absolute;   
+    z-index: 6;
+    color: black;
+    background: #E8EDDF;    
+}
+#answer {
+    margin-right: 5%;
+    margin-left: 5%;
+    width: 90%;
+    height: 37%;
+    border: 3px solid black;
+    border-radius: 10%;
+    position: absolute;
+    top: 57%;
+    z-index: 6;
+    background: #E8EDDF;
+}
+#ContainerFrogChoice, #containerQuestionsChoice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#containerinput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+}
+#ans {
+    width: 60%;
+    height: 30%;
+    padding-left: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 2px solid #086788;
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: 'Press Start 2P';
+}
+.lily {
+    width: 13%;
+    height: auto;
+    position: absolute;
+    z-index: 2;
+}
+#qs {
+    font-size: 1.1rem;
+    margin-left: 2rem;
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+}
+.butt {
+    padding: 0.55rem 1rem;
+    margin-right: 2%;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #086788;
+}
+.butt:hover {
+    background-color: #086788;
+    color: white;
+}
+#containerzh {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#zhaba {
+    width: 10%;
+    height: 10%;
+    z-index: 3;
+    position: relative;
+    top: 82%;
+    left: 45%;
+}
+#containerlr {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: static;
+    background: white;
+    z-index: 20;
+}
+.modal { /* The Modal (background) */
+  display: none; /* Hidden by default */
+  position: fixed; 
+  z-index: 30;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0,0,0, 0.5); 
+}
+.modal-content { /* Modal Content/Box */
+  background-color: #fefefe;
+  margin: 3% auto; 
+  padding: 7%;
+  border: 10px solid #888;
+  width: 80%;
+  text-align: center;
+  position: relative;
+}
+.modal2 { /* The Modal (background) */
+  display: none; /* Hidden by default */
+  position: fixed; 
+  z-index: 30;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0,0,0, 0.5); 
+}
+.modal-content2 { /* Modal Content/Box */
+  background-color: #fefefe;
+  margin: 3% auto; 
+  padding: 7%;
+  border: 10px solid #888;
+  width: 95%;
+  text-align: center;
+  position: relative;
+}
+.close2 {
+  color: #aaa;
+  float: right;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.close2:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.close:hover, .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#choose {display: flex; 
+    justify-content: space-evenly;
+}
+.frogbutton {
+    font-size: 1rem;
+    text-align: center;
+    color: white;
+    width: 20%;
+    height: auto;
+    background: #086788;
+    margin-left: 1%;
+    margin-right: 1%;
+    padding: 3%;
+    border: 5px solid #086788;
+}
+.questionButton {
+    font-size: 1rem;
+    text-align: center;
+    color: white;
+    width: 30%;
+    height: auto;
+    background: #086788;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 5%;
+    padding: 1%;
+    border: 5px solid #086788;
+}
+.frogbutton:hover, .questionButton:hover {
+    background: white;
+    color: black;
+    border: 5px solid #086788;
+}
+button {
+    font-family: 'Press Start 2P';
+}
+#myBtn {
+  padding: 0.5rem 2rem;
+  text-align: center;
+  display: inline-block;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #086788;
+}
+#myBtn:hover {
+  background-color: #086788;
+  color: white;
+}
+#fourthfrogbutton, #fistfrogbutton {
+    padding: 0 2%;
+}
+#reply {
+    position: absolute;
+    top: 39%;
+    left: 43%;
+}
+#ButtonQuestions {
+    padding: 0.5rem 1.2rem;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white; 
+    color: black; 
+    border: 2px solid #086788;
+    margin-left: 26.2%;
+    margin-right: 20%;
+    margin-top: 2%;
+}
+#ButtonQuestions:hover {
+    background-color: #086788;
+    color: white;
+}
+#questions {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+</style>
+</head>
+<body>  
+<div id="containerlr">
+<!--left-->
+    <div id="left">
+        <div id="containerzh">
+            <div id="zhaba"> 
+                <p id="images"><img src="https://i.ibb.co/hsyPh18/hearts-png.png" alt="image1" style="width: 100%; height: 100%; position: absolute; z-index: 20;"></p>
+            </div>
+        </div>
+        <img src="https://i.ibb.co/rp1jhp5/lilypad-png.png" alt="кувщинка1" class="lily" style="left: 20%; top: 79%;">
+        <img src="https://i.ibb.co/rp1jhp5/lilypad-png.png" alt="кувщинка2" class="lily" style="left: 35%; top: 63%;">
+        <img src="https://i.ibb.co/rp1jhp5/lilypad-png.png" alt="кувщинка3" class="lily" style="left: 23%; top: 45%;">
+        <img src="https://i.ibb.co/rp1jhp5/lilypad-png.png" alt="кувщинка6" class="lily" style="left: 36%; top: 30%;">
+        <img src="https://i.ibb.co/rp1jhp5/lilypad-png.png" alt="кувщинка7" class="lily"style="left: 17%; top: 18%;">
+        <img src="https://i.ibb.co/KsYdp6R/finish-png.png" alt="опять не работает" style="width: 12%; height: auto; left: 2%; top: 2%; z-index: 1; position: absolute;">
+        <img src="https://i.ibb.co/X8THCsT/fish-png.png" alt="рыба" style="width: 8%; height: auto; left: 7%; top: 63%; z-index: 1; position: absolute;">
+    </div>
+<!--right-->
+<div id="right">
+    <div id="container1">
+        <div id="question">
+            <p id="qs">Напишите имя первого князя, которого выгнали бояре Новгородской республики</p>
+            <p id="ifgameover"></p>
+        </div>
+        
+        <div id="answer">
+            <div id="containerinput">
+                <input type="text" id="ans">
+                <button class="butt" onclick="validateAnswer()">Ответить</button>
+            </div>
+            <p id="reply"></p>
+            <!-- Trigger/Open The Modal -->
+            <div id="ContainerFrogChoice">
+            <button id="myBtn">Выбор лягушки</button>
+            </div>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+            <!-- Modal content -->
+                <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p style="font-size: 2.2rem;">Выберите лягушку:<br><br><br></p>
+                        <div id="choose">
+                                <button class="frogbutton" id="fistfrogbutton" onclick="chooseAFrog1()">Классика</button>        
+                                <button class="frogbutton" id="secondfrogbutton" onclick="chooseAFrog2()">Маг</button>
+                                <button class="frogbutton" id="thirdfrogbutton" onclick="chooseAFrog3()">Реализм</button>
+                                <button class="frogbutton" id="fourthfrogbutton" onclick="chooseAFrog4()">Упоротая</button>
+                                <button class="frogbutton" id="fifthfrogbutton" onclick="chooseAFrog5()">Розовая</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="ContainerQuestionsChoice">
+                    <button id="ButtonQuestions">Выбор сложности</button>
+                    </div>
+                    <!-- The Modal -->
+                    <div id="myModal2" class="modal2">
+                        <!-- Modal content -->
+                        <div class="modal-content2">
+                                    <span class="close2">&times;</span>
+                                    <p style="font-size: 2.2rem;">Выберите сложность:<br><br><br></p>
+                                <div id="choose">
+                                        <button class="questionButton" id="easyButton" onclick="chooseDifficultyEasy()">Простые</button>
+                                        <button class="questionButton" id="WWWButton" onclick="chooseDifficultyWWW()">ЧГК</button>
+                                        <button class="questionButton" id="encyclopediaButton" onclick="chooseDifficultyEncyclopedia()">Энциклопедия</button>
+                                        <button class="questionButton" id="riddlesButton" onclick="chooseDifficultyRiddles()">Загадки</button>
+                                        <button class="questionButton" id="IRButton" onclick="chooseDifficultyIR()">Международные отношения</button>
+                                        <button class="questionButton" id="MemesButton" onclick="chooseDifficultyMemes()">Мемы</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div id="questions">
+<p id="q1">Напишите имя первого князя, которого выгнали бояре Новгородской республики</p>
+<p id="q2">Найдите x: <br>3x(x-1)-17=x(1+3x)+1</p>
+<p id="q3">Сколько всего гендеров? Ответ запишите цифрой</p>
+<p id="q4">Какой Шрек лучше? Ответ запишите порядковым числительным</p> 
+<p id="q5">Напишите параллельный минор соль мажора строчными буквами</p>
+</div>
+<script>
+    var counter = 1;
+    function changeQuestion() {
+        counter++;
+        if (counter == 1) {document.getElementById("qs").innerHTML = document.getElementById("q1").innerText;}
+        else if (counter == 2) {document.getElementById("qs").innerHTML = document.getElementById("q2").innerText;}
+        else if (counter == 3) {document.getElementById("qs").innerHTML = document.getElementById("q3").innerText;}
+        else if (counter == 4) {document.getElementById("qs").innerHTML = document.getElementById("q4").innerText;}
+        else if (counter == 5) {document.getElementById("qs").innerHTML = document.getElementById("q5").innerText;}
+        else if (counter == 6) {document.getElementById("qs").innerHTML = 'Победа!!! Держите ссылочки на мемы с жабами:) <a target="_blank" href="https://vk.com/photo208439866_457254048?rev=1">1</a> <a target="_blank" href="https://vk.com/photo208439866_457259417">2</a> <a target="_blank" href="https://vk.com/photo208439866_457258199?rev=1">3</a> <a target="_blank" href="https://vk.com/photo208439866_457255030?rev=1">4</a> <a target="_blank" href="https://vk.com/photo208439866_457253351?rev=1">5</a> А еще можете обновить страницу и опробовать другие сложости и других жаб!';}
+    }
+var e1triggered = true;
+var e2triggered = true;
+var e3triggered = true;
+var e4triggered = true;
+var e5triggered = true;
+var w1triggered = true;
+var w2triggered = true;
+var w3triggered = true;
+var w4triggered = true;
+var w5triggered = true;
+var c1triggered = true;
+var c2triggered = true;
+var c3triggered = true;
+var c4triggered = true;
+var c5triggered = true;
+var r1triggered = true;
+var r2triggered = true;
+var r3triggered = true;
+var r4triggered = true;
+var r5triggered = true;
+var i1triggered = true;
+var i2triggered = true;
+var i3triggered = true;
+var i4triggered = true;
+var i5triggered = true;
+var m1triggered = true;
+var m2triggered = true;
+var m3triggered = true;
+var m4triggered = true;
+var m5triggered = true;
+    function validateAnswer() {
+        const answer = document.getElementById("ans").value;
+        const e1 = "всеволод"; /* easy 1st question*/ 
+        const e12 = "Всеволод";
+        const e2 = "-4,5";  
+        const e22 = "-4.5";                  
+        const e3 = "2";                    
+        const e4 = "первый"; 
+        const e42 = "второй";                   
+        const e5 = "ми";
+        const e52 = "ми минор";
+        const e53 = "em"; 
+        const e54 = "Em"; /* easy 5th question */
+        const w1 = "обломов"; //ЧГК 1 вопрос         
+        const w2 = "орео";         
+        const w3 = "сибирь";       
+        const w4 = "где она будет";                     
+        const w5 = "философский пароход"; /* ЧГК 5th question */ 
+        const c1 = "антарктика"; /* Энциклопедия 1st question */ 
+        const c12 = "антарктида";    
+        const c2 = "колибри";     
+        const c3 = "лезвие"; 
+        const c32 = "хуй";       
+        const c4 = "18";            
+        const c5 = "розового";
+        const c52 = "розовое"; /* Энциклопедия 5th question */   
+        const r1 = "storm"; //Загадки
+        const r2 = "тапочки";
+        const r3 = "death";
+        const r4 = "gum";
+        const r5 = "ямщик"; 
+        const r52 = "кучер"; //Загадки
+        const i1 = "реализм"; // Международные..
+        const i2 = "один пояс один путь";
+        const i22 = "один пояс и один путь";
+        const i3 = "28";
+        const i32 = "28000000000000";
+        const i4 = "huntington";
+        const i5 = "нобелевская премия"; //...Отнощения
+        const m1 = "floppa"; //мемы
+        const m12 = "шлепа";
+        const m13 = "шлёпа"; 
+        const m14 = "каракал";
+        const m15 = "caracal";
+        const m2 = "лягушка";
+        const m22 = "легушка";
+        const m23 = "легушька";
+        const m24 = "легущка";
+        const m25 = "аннигиляторная пушка";
+        const m3 = "he turned himself into a pickle";
+        const m32 = "he turns himself into a pickle";
+        const m4 = "omg me";
+        const m42 = "OMG me";
+        const m5 = "nigga";
+        if  ((answer === e1 && e1triggered) || (answer === e12 && e1triggered) || (answer === w1 && w1triggered) || (answer === c1 && c1triggered) || (answer === c12 && c1triggered) ||  (answer === r1 && r1triggered) || (answer === m1 && m1triggered) || (answer === m12 && m1triggered) || (answer === m13 && m1triggered) || (answer === m14 && m1triggered) || (answer === m15 && m1triggered) || (answer === i1 && i1triggered)){
+            document.getElementById("reply").innerText = "good";
+            changeQuestion();
+            anime({
+            targets: '#zhaba',
+            easing: 'easeInOutQuad',
+            duration: 800,
+            left: "75%",
+            top: "65%"
+});
+            e1triggered = false;
+            w1triggered = false;
+            c1triggered = false;
+            r1triggered = false;
+            i1triggered = false;
+            m1triggered = false;
+        }   else if ((answer === e2 && e2triggered) || (answer === e22 && e2triggered) || (answer === w2 && w2triggered) || (answer === c2 && c2triggered) || (answer === r2 && r2triggered) || (answer === m2 && m2triggered) || (answer === m22 && m2triggered) || (answer === m23 && m2triggered) || (answer === m24 && m2triggered) || (answer === m25 && m2triggered) || (answer === m2 && m2triggered) || (answer === i22 && i2triggered) || (answer === i2 && i2triggered)) {
+            document.getElementById("reply").innerText = "good";
+            changeQuestion();  
+            anime({
+            targets: '#zhaba',
+            easing: 'easeInOutQuad',
+            left: "50%",
+            duration: 800,
+            top: "47%",
+});
+            e2triggered = false;
+            w2triggered = false;
+            c2triggered = false;
+            r2triggered = false;
+            i2triggered = false;
+            m2triggered = false;
+        }   else if ((answer === e3 && e3triggered) || (answer === w3 && w3triggered) || (answer === c3 && c3triggered) || (answer === c32 && c3triggered) || (answer === r3 && r3triggered) || (answer === i3 && i3triggered) || (answer === i32 && i3triggered) || (answer === m3 && m3triggered) || (answer === m32 && m3triggered)) {
+            document.getElementById("reply").innerText = "good";
+            changeQuestion();
+            anime({
+            targets: '#zhaba',
+            easing: 'easeInOutQuad',
+            duration: 800,
+            left: "75%",
+            top: "33%"
+});
+            e3triggered = false;
+            w3triggered = false;
+            c3triggered = false;
+            r3triggered = false;
+            i3triggered = false;
+            m3triggered = false;
+        }   else if ((answer === e4 && e4triggered) || (answer === e42 && e4triggered) || (answer === w4 && w4triggered) || (answer === c4 && c4triggered) || (answer === r4 && r4triggered) || (answer === i4 && i4triggered) || (answer === m4 && m4triggered) || (answer === m42 && m4triggered)) {
+            document.getElementById("reply").innerText = "good";
+            changeQuestion();
+            anime({
+            targets: '#zhaba',
+            easing: 'easeInOutQuad',
+            duration: 800,
+            left: "40%",
+            top: "20%"
+});
+            e4triggered = false;
+            w4triggered = false;
+            c4triggered = false;
+            r4triggered = false;
+            i4triggered = false;
+            m4triggered = false;
+        }   else if ((answer === e5 && e5triggered) || (answer === e52 && e5triggered) || (answer === e53 && e5triggered) || (answer === e54 && e5triggered) || (answer === w5 && w5triggered) || (answer === c5 && c5triggered) || (answer === c52 && c5triggered) || (answer === r5 && r5triggered) || (answer === r52 && r5triggered) || (answer === i5 && i5triggered) || (answer === m5 && m5triggered)) {
+            document.getElementById("reply").innerText = "good";
+            changeQuestion();
+            anime({targets: '#zhaba', easing: 'easeInOutQuad', duration: 800, left: "10%", 
+            top: "13%", 
+            rotate: {
+                delay: 270,
+                value: 360,
+                duration: 400,
+                easing: 'easeInOutSine'}
+});
+            e5triggered = false;
+            w5triggered = false;
+            c5triggered = false;
+            r5triggered = false;
+            i5triggered = false;
+            m5triggered = false;
+    }
+    else {counter = 1; document.getElementById("reply").innerText = "Wrong!"; location.reload();}
+    }
+    function chooseAFrog1() {document.getElementById('images').innerHTML = '<img src="https://i.ibb.co/hsyPh18/hearts-png.png" alt="image1" style="width: 100%; height: 100%; position: absolute">'}
+    function chooseAFrog2() {document.getElementById('images').innerHTML = '<img src="https://i.ibb.co/G7FbFLK/magician-png.png" alt="image2" style="width: 100%; height: 100%; position: absolute">'}
+    function chooseAFrog3() {document.getElementById('images').innerHTML = '<img src="https://i.ibb.co/4KDWgH6/realism2.png" alt="image3" style="width: 100%; height: 80%; position: absolute">'}
+    function chooseAFrog4() {document.getElementById('images').innerHTML = '<img src="https://image.flaticon.com/icons/png/512/2742/2742178.png" alt="image4" style="width: 100%; height: 100%; position: absolute">'}
+    function chooseAFrog5() {document.getElementById('images').innerHTML = '<img src="https://image.flaticon.com/icons/png/512/1808/1808086.png" alt="image5" style="width: 100%; height: 100%; position: absolute">'}
+var modal = document.getElementById("myModal"); // Get the modal
+var btn = document.getElementById("myBtn"); // Get the button that opens the modal
+var span = document.getElementsByClassName("close")[0]; // Get the <span> element that closes the modal
+btn.onclick = function() {modal.style.display = "block";} // When the user clicks on the button, open the modal
+span.onclick = function() {modal.style.display = "none";} // When the user clicks on <span> (x), close the modal
+var modal2 = document.getElementById("myModal2"); // Get the modal
+var btn2 = document.getElementById("ButtonQuestions"); // Get the button that opens the modal
+var span2 = document.getElementsByClassName("close2")[0]; // Get the <span> element that closes the modal
+btn2.onclick = function() {modal2.style.display = "block";} // When the user clicks on the button, open the modal
+span2.onclick = function() {modal2.style.display = "none";} // When the user clicks on <span> (x), close the modal
+function chooseDifficultyEasy() { 
+    var a = document.getElementById("q1").innerHTML;
+a = "Напишите имя первого князя, которого выгнали бояре Новгородской республики с маленькой буквы";
+document.getElementById("q2").innerHTML = "Найдите x: <br>3x(x-1)-17=x(1+3x)+1";
+document.getElementById("q3").innerHTML = "Сколько всего гендеров? Ответ запишите цифрой";
+document.getElementById("q4").innerHTML = "Какой Шрек лучше? Ответ запишите порядковым числительным";
+document.getElementById("q5").innerHTML = "Напишите параллельный минор соль мажора строчными буквами";
+document.getElementById("qs").innerHTML = a;
+}
+function chooseDifficultyWWW() {
+    var a = document.getElementById("q1").innerHTML;
+a = "По мнению Набокова, Россию погубили два Ильича. Один - Ленин, а второй? Запишите его фамилию со строчной буквы";
+document.getElementById("q2").innerHTML = "Негров, которые стремятся примазаться к белым сливкам общества, в США презрительно называют словом, первая и последняя буква которого одинаковы. Каким? Ответ запишите строчными буквами";
+document.getElementById("q3").innerHTML = "Рассказывают, что Наполеон и его окружение называли остров Святой Елены 'Тропическая ОНА'. Получившееся словосочетание является оксюмороном. Что мы заменили словом 'ОНА'? Ответ запишите строчными буквами";
+document.getElementById("q4").innerHTML = "Закончите афоризм великого хоккеиста Уэйна Гретцки: «Хорошие игроки находятся там, где шайба, а великие — там, ...»";
+document.getElementById("q5").innerHTML = "Дуплет. 1. На НЕГО можно было взять с собой ценностей на сумму не более 50 рублей золотом, но ГПУ оплачивало билет второго класса. Назовите ЕГО двумя словами. 2. Цитата из стихотворения Александра Кушнера: <br>Есть на нем биллиард и буфет, <br>А гудок его смутный и жалобный: <br>ни Толстого, ни Пушкина нет. <br>Назовите ЕГО двумя словами.";
+document.getElementById("qs").innerHTML = a;
+}
+function chooseDifficultyEncyclopedia() {
+    var a = document.getElementById("q1").innerHTML;
+a = "Как называется материк, на котором находится самая большая пустыня?";
+document.getElementById("q2").innerHTML = "Единственная птица, которая может летать задом наперед";
+document.getElementById("q3").innerHTML = "Между плитами пирамиды Хеопса невозможно просунуть _____";
+document.getElementById("q4").innerHTML = "Сколько выборов проиграл Линкольн до президенства?";
+document.getElementById("q5").innerHTML = "Какого цвета молоко у бегемотов?";
+document.getElementById("qs").innerHTML = a;
+}
+function chooseDifficultyRiddles() {
+    var a = document.getElementById("q1").innerHTML;
+a = "I have an eye <br><br>But cannot see. <br><br>You’ll head inside <br><br>When you see me. <br>Все ответы строчными буквами";
+document.getElementById("q2").innerHTML = "Сзади подошёл, <br><br>Два раза сунул и пошёл";
+document.getElementById("q3").innerHTML = "They try to beat me,<br><br>They try in vain,<br><br>And when I win<br><br>I end the pain";
+document.getElementById("q4").innerHTML = "I go in hard. <br><br>I come out soft. <br><br>You blow me hard. <br><br>What am I?";
+document.getElementById("q5").innerHTML = "На попе сидит <br><br>И в попу глядит. <br><br>Что это за профессия?";
+document.getElementById("qs").innerHTML = a;
+}
+function chooseDifficultyIR() {
+    var a = document.getElementById("q1").innerHTML;
+a = "Какой классической теории международных отношений противоречит понятие 'power diffusion'? Запишите строчными буквами";
+document.getElementById("q2").innerHTML = "Как называется Внешнеполитическая экономическая инициатива 习近平? Запишите без знаков препинания строчными буквами";
+document.getElementById("q3").innerHTML = "Внешний долг США, округленный до трлн (в долларах). Ответ запишите числом";
+document.getElementById("q4").innerHTML = "Автор концепции этнокультурного разделения цивилизаций. Запишите его фамилию по-английски с маленькой буквы";
+document.getElementById("q5").innerHTML = "Это было у Обамы и Г.Киссинджера. Трамп тоже это хотел, что привело к его попыткам стать посрединком в отношениях стран Корейского полуострова. Что это? Ответ запишите строчными буквами";
+document.getElementById("qs").innerHTML = a;
+}
+function chooseDifficultyMemes() {
+    var a = document.getElementById("q1").innerHTML;
+a = "Comitted several war crimes in Serbia (not proved). Now is a citizen of the world. Is also known as the big Russian cat";
+document.getElementById("q2").innerHTML = "Я шепну тебе на ушко:";
+document.getElementById("q3").innerHTML = "What is the funniest shit we've ever seen? (Start your answer with 'he')";
+document.getElementById("q4").innerHTML = "Who wants their juissy ate?";
+document.getElementById("q5").innerHTML = "Вставьте последнее слово, которое говорящий напевает, строчными буквами:'Ah, nigga, don't hate me 'cause I'm beautiful, nigga. Maybe if you got rid of that old yee-yee ass haircut you got you'd get some bitches on your dick. Oh, better yet, maybe Tanisha'll call your dog-ass if she ever stop fuckin' with that brain surgeon or lawyer she fucking with. _____'";
+document.getElementById("qs").innerHTML = a;
+}
+</script>
+</body>
+</html>
